@@ -24,31 +24,31 @@ Prima di iniziare, assicurati di avere i seguenti requisiti installati sul tuo s
    cd <repository-directory>
    ```
    
-Installa le dipendenze:
+2. Installa le dipendenze:
   ```bash
   pip install -r requirements.txt
   ```
 
-Crea un file .env nella directory principale e aggiungi la tua chiave API OpenAI:
+3. Crea un file .env nella directory principale e aggiungi la tua chiave API OpenAI:
 
 ```bash
 OPENAI_API_KEY=your_api_key_here
 ```
-Assicurati che il documento di riferimento (Sito_First_Praedict.docx) sia presente nella directory radice.
+4. Assicurati che il documento di riferimento (Sito_First_Praedict.docx) sia presente nella directory radice.
 
-Esecuzione
+5. Esecuzione
 Crea l'indice FAISS utilizzando il comando:
 
 ```bash
 Copia codice
 python process_document.py
 ```
-Avvia l'applicazione:
+6. Avvia l'applicazione:
 
 ```bash
 streamlit run app.py
 ```
-Apri il tuo browser e accedi all'applicazione su http://localhost:8501.
+7. Apri il tuo browser e accedi all'applicazione su http://localhost:8501.
 
 ## Architettura del Progetto
 
