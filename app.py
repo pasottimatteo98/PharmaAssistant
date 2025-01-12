@@ -1,5 +1,6 @@
 import streamlit as st
-from process_document import load_vectorstore, generate_suggestions
+import os
+from process_document import load_vectorstore, generate_suggestions, create_faiss_index
 from components.chat import init_chat_state, display_messages, display_input_form
 from components.suggestions import display_suggestions
 from config.styles import CUSTOM_CSS
@@ -13,6 +14,14 @@ def main():
     st.markdown('<div class="title-button">💊 Pharma Assistant</div>', unsafe_allow_html=True)
 
     st.markdown('<div class="subtitle">Il tuo assistente virtuale personalizzato</div>', unsafe_allow_html=True)
+
+    # Inizializza l'indice FAISS se non esiste
+    if not os.path.exists("faiss_index"):
+        with st.spinner("Inizializzazione del sistema... attendere prego."):
+            create_faiss_index("Sito_First_Praedict.docx")
+            st.success("Inizializzazione completata!")
+            st.rerun()
+            st.stop()
 
     # Inizializza lo stato della chat
     init_chat_state()

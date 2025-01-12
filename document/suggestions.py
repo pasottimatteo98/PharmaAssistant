@@ -5,9 +5,10 @@ from operator import itemgetter
 
 
 def generate_suggestions(vectorstore):
-    prompt = """Analizza il contenuto e genera 6 domande frequenti pertinenti sui prodotti First Praedict.
-    Le domande devono essere brevi, chiare e coprire aspetti diversi dei prodotti.
-    Restituisci solo l'elenco delle domande, una per riga."""
+    prompt = """Analizza il contenuto e genera 4 domande frequenti pertinenti sui prodotti First Praedict.
+    Le domande devono essere brevi, chiare e coprire aspetti diversi dei prodotti ma le risponde devono essere presenti nel documento.
+    NON generare domande di cui il documento NON ha risposta.
+    Restituisci solo l'elenco delle domande, una per riga, SENZA numerazione."""
 
     try:
         llm = OpenAI(temperature=0.2)
@@ -28,6 +29,7 @@ def generate_suggestions(vectorstore):
 
         result = chain.invoke(context)
         questions = [q.strip() for q in result.split("\n") if q.strip()]
+
         return questions[:6]
 
     except Exception as e:
